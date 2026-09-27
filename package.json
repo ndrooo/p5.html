@@ -1,0 +1,15 @@
+{
+  "name": "p5.html",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Processing for HTML!",
+  "author": "a@ndr.ooo",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "live-server"
+  },
+  "devDependencies": {
+    "live-server": "1.2.2"
+  }
+}
