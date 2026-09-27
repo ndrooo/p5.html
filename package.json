@@ -5,11 +5,18 @@
   "description": "Processing for HTML!",
   "author": "a@ndr.ooo",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "live-server"
+    "dev": "esbuild --bundle src/index.js --outfile=www/p5.html.js --watch --servedir=www",
+    "build": "esbuild --bundle src/index.js --outfile=dist/p5.html.js"
   },
   "devDependencies": {
-    "live-server": "1.2.2"
+    "esbuild": "0.28.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }
