@@ -9,9 +9,9 @@ class P5Text extends P5Element {
   }
 
   draw(p: p5) {
-    p.fill("black");
+    p.fill("grey");
     p.stroke("black");
-    p.text(this.content, 33, 14);
+    p.text(this.content, 0, 0);
     p.noFill();
     p.noStroke();
   }
