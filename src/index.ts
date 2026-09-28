@@ -1,7 +1,20 @@
+import "./elements/rect";
+import "./elements/translate";
+import "./elements/text";
+import P5Canvas from "./canvas";
 import P5Element from "./element";
+import type p5 from "p5";
+
+declare global {
+  interface Window {
+    setup?: () => void;
+    draw?: () => void;
+    p5?: any;
+  }
+}
 
 if (window.p5) {
-  window.p5.registerAddon((p5, fn, lifecycles) => {
+  window.p5.registerAddon((p5: p5, fn: any, lifecycles: any) => {
     fn.p5Root = null;
     lifecycles.presetup = function () {
       if (this.p5Root === null) {
@@ -38,38 +51,6 @@ if (window.p5) {
   });
 }
 
-export default class P5Canvas extends P5Element {
-  p5 = null;
-
-  connectedCallback() {
-    const globalMode =
-      (window.setup && typeof window.setup === "function") ||
-      (window.draw && typeof window.draw === "function");
-    if (!("p5" in window) || globalMode) {
-      return;
-    }
-    let p5Inst = new window.p5((p) => {
-      p.setup = () => {};
-      p.draw = () => {};
-    }, this);
-    p5Inst.p5Root = this;
-  }
-
-  presetup(p) {
-    p.createCanvas(200, 200);
-  }
-
-  setup(p) {
-    P5Element.setupChildren(this, p);
-  }
-
-  predraw(p) {
-    p.background(220);
-  }
-
-  draw(p) {
-    P5Element.drawChildren(this, p);
-  }
-}
-
 customElements.define("p5-canvas", P5Canvas);
+
+export { P5Element };
