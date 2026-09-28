@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "esbuild --bundle src/index.js --outfile=www/p5.html.js --watch --servedir=www",
-    "build": "esbuild --bundle src/index.js --outfile=dist/p5.html.js"
+    "dev": "esbuild --bundle src/index.ts --outfile=www/p5.html.js --watch --servedir=www --sourcemap",
+    "build": "esbuild --bundle src/index.ts --outfile=dist/p5.html.js"
   },
   "devDependencies": {
     "@types/p5": "1.7.7",
