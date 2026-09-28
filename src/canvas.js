@@ -1,4 +1,4 @@
-import P5Element from "./element.js";
+import P5Element from "./element";
 
 if (window.p5) {
   window.p5.registerAddon((p5, fn, lifecycles) => {
