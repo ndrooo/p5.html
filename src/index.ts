@@ -1,4 +1,8 @@
+import "./elements/circle";
+import "./elements/ellipse";
 import "./elements/rect";
+import "./elements/rotate";
+import "./elements/scale";
 import "./elements/translate";
 import "./elements/text";
 import P5Canvas from "./canvas";
