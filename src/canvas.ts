@@ -2,12 +2,14 @@ import P5Element from "./element";
 import type p5 from "p5";
 
 export default class P5Canvas extends P5Element {
-  p5 = null;
+  p5: p5 | null = null;
   width: number = Number(this.getAttribute("width")) ?? 0;
   height: number = Number(this.getAttribute("height")) ?? 0;
   dimensionsChanged: boolean = false;
+  paused = this.getAttribute("paused")?.toLowerCase() === "true";
+  ranFrameOne = false;
 
-  static observedAttributes = ["width", "height"];
+  static observedAttributes = ["width", "height", "paused"];
 
   connectedCallback() {
     const globalMode =
@@ -23,7 +25,11 @@ export default class P5Canvas extends P5Element {
     p5Inst.p5Root = this;
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    name: string,
+    oldValue: string,
+    newValue: string | null,
+  ) {
     if (name === "width") {
       this.width = Number(newValue) ?? 0;
     }
@@ -33,9 +39,16 @@ export default class P5Canvas extends P5Element {
     if (name === "width" || name === "height") {
       this.dimensionsChanged = true;
     }
+    if (name === "paused") {
+      this.paused = newValue?.toLowerCase() === "true";
+      if (this.p5 && !this.paused) {
+        this.p5.loop();
+      }
+    }
   }
 
   presetup(p: p5) {
+    this.p5 = p;
     p.createCanvas(this.width, this.height);
     this.drawBackground(p);
   }
@@ -45,6 +58,12 @@ export default class P5Canvas extends P5Element {
   }
 
   predraw(p: p5) {
+    if (this.paused && this.ranFrameOne) {
+      p.noLoop();
+    } else {
+      p.loop();
+      this.ranFrameOne = true;
+    }
     this.drawBackground(p);
   }
 

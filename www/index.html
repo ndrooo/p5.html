@@ -3,13 +3,20 @@
     <head>
         <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
         <script src="p5.html.js" type="module"></script>
+        <script src="https://unpkg.com/alpinejs" defer></script>
 
         <link rel="stylesheet" type="text/css" href="style.css" />
         <meta charset="utf-8" />
     </head>
     <body>
-        <main>
-            <p5-canvas width="200" height="200">
+        <main x-data="{ paused: false }">
+            <button
+                @click="paused = !paused"
+                x-text="paused ? 'Play' : 'Pause'"
+            >
+                Pause
+            </button>
+            <p5-canvas width="200" height="200" :paused="paused">
                 <p5-translate x="90" y="14">
                     <p5-scale x="-1" y="1">
                         <p5-text>&lt;p5-text&gt;</p5-text>
