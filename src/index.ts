@@ -1,5 +1,7 @@
+import "./elements/capture";
 import "./elements/circle";
 import "./elements/ellipse";
+import "./elements/image";
 import "./elements/rect";
 import "./elements/rotate";
 import "./elements/scale";
@@ -8,6 +10,7 @@ import "./elements/text";
 import P5Canvas from "./canvas";
 import P5Element from "./element";
 import type p5 from "p5";
+import type { P5Html, P5HtmlExtension } from "./types";
 
 declare global {
   interface Window {
@@ -18,7 +21,7 @@ declare global {
 }
 
 if (window.p5) {
-  window.p5.registerAddon((p5: p5, fn: any, lifecycles: any) => {
+  window.p5.registerAddon((p5: p5, fn: P5Html, lifecycles: any) => {
     fn.p5Root = null;
     lifecycles.presetup = function () {
       if (this.p5Root === null) {
@@ -58,4 +61,4 @@ if (window.p5) {
 // This must be defined after the addon is set up
 customElements.define("p5-canvas", P5Canvas);
 
-export { P5Element };
+export { P5Element, P5Html, P5HtmlExtension };
