@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
-        <script src="p5.html.js" type="module"></script>
+        <script src="/p5.html.js" type="module"></script>
         <script src="https://unpkg.com/alpinejs" defer></script>
 
         <link rel="stylesheet" type="text/css" href="style.css" />
@@ -24,7 +24,7 @@
                 </p5-translate>
                 <p5-translate x="30" y="30" class="noisy">
                     <p5-scale x="0.5" y="0.5">
-                        <p5-image src="/rc.svg"></p5-image>
+                        <p5-image src="/static/rc.svg"></p5-image>
                     </p5-scale>
                 </p5-translate>
                 <p5-translate x="20" y="20">
@@ -35,10 +35,5 @@
             </p5-canvas>
         </main>
         <script src="sketch.js"></script>
-        <script>
-            new EventSource("/esbuild").addEventListener("change", () =>
-                location.reload(),
-            );
-        </script>
     </body>
 </html>
