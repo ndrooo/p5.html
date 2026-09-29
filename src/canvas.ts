@@ -3,6 +3,11 @@ import type p5 from "p5";
 
 export default class P5Canvas extends P5Element {
   p5 = null;
+  width: number = Number(this.getAttribute("width")) ?? 0;
+  height: number = Number(this.getAttribute("height")) ?? 0;
+  dimensionsChanged: boolean = false;
+
+  static observedAttributes = ["width", "height"];
 
   connectedCallback() {
     const globalMode =
@@ -18,8 +23,20 @@ export default class P5Canvas extends P5Element {
     p5Inst.p5Root = this;
   }
 
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (name === "width") {
+      this.width = Number(newValue) ?? 0;
+    }
+    if (name === "height") {
+      this.height = Number(newValue) ?? 0;
+    }
+    if (name === "width" || name === "height") {
+      this.dimensionsChanged = true;
+    }
+  }
+
   presetup(p: p5) {
-    p.createCanvas(200, 200);
+    p.createCanvas(this.width, this.height);
   }
 
   setup(p: p5) {
@@ -31,6 +48,10 @@ export default class P5Canvas extends P5Element {
   }
 
   draw(p: p5) {
+    if (this.dimensionsChanged) {
+      p.resizeCanvas(this.width, this.height);
+      this.dimensionsChanged = false;
+    }
     P5Element.drawChildren(this, p);
   }
 }
