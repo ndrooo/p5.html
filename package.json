@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "eleventy --serve --input=www --config=www/eleventy.config.js",
     "build": "node build.esbuild.mjs",
-    "build:site": "eleventy --input=www"
+    "build:site": "eleventy --input=www --config=www/eleventy.config.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.6",
