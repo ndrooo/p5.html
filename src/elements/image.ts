@@ -6,7 +6,8 @@ export default class P5Image extends P5Element {
   src: string = "";
   fromCapture: string = "";
   dirty = false;
-  provider: p5.Image | p5.Element | null = null;
+  capture: P5Capture | null = null;
+  image: p5.Image | null = null;
 
   static observedAttributes = ["src", "from-capture"];
 
@@ -30,23 +31,27 @@ export default class P5Image extends P5Element {
       this.updateProvider(p);
       this.dirty = false;
     }
-    if (this.provider !== null) {
-      // Type assurance for callback
-      let provider = this.provider;
+    if (this.capture && this.capture.video) {
+      let video = this.capture.video;
       this.cssContext(p, () => {
-        p.image(provider, 0, 0);
+        p.image(video, 0, 0);
+      });
+    } else if (this.image) {
+      let image = this.image;
+      this.cssContext(p, () => {
+        p.image(image, 0, 0);
       });
     }
   }
 
   async updateProvider(p: p5) {
     let capture = document.getElementById(this.fromCapture);
+    this.capture = null;
+    this.image = null;
     if (capture instanceof P5Capture) {
-      this.provider = capture.video ?? null;
+      this.capture = capture;
     } else if (this.src !== "") {
-      this.provider = await p.loadImage(this.src);
-    } else {
-      this.provider = null;
+      this.image = await p.loadImage(this.src);
     }
   }
 }
