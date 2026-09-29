@@ -1,7 +1,6 @@
 {
   "name": "p5.html",
   "version": "0.0.1",
-  "private": true,
   "description": "Processing for HTML!",
   "author": "a@ndr.ooo",
   "license": "LGPL-3.0-only",
