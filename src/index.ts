@@ -55,6 +55,7 @@ if (window.p5) {
   });
 }
 
+// This must be defined after the addon is set up
 customElements.define("p5-canvas", P5Canvas);
 
 export { P5Element };
