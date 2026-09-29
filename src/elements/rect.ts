@@ -22,9 +22,9 @@ class P5Rect extends P5Element {
   }
 
   draw(p: p5) {
-    p.fill("red");
-    p.rect(0, 0, this.width, this.height);
-    p.noFill();
+    this.cssContext(p, () => {
+      p.rect(0, 0, this.width, this.height);
+    });
   }
 }
 

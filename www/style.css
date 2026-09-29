@@ -3,6 +3,26 @@ body {
     margin: 0;
     padding: 0;
 }
+
 canvas {
     display: block;
+}
+
+p5-canvas {
+    background: lightblue;
+}
+
+p5-rect {
+    color: blue;
+    background: green;
+}
+
+p5-ellipse {
+    color: red;
+    background: rgb(from orange r g b / 0.5);
+}
+
+p5-text {
+    color: transparent;
+    background: black;
 }

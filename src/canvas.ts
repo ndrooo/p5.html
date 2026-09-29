@@ -37,6 +37,7 @@ export default class P5Canvas extends P5Element {
 
   presetup(p: p5) {
     p.createCanvas(this.width, this.height);
+    this.drawBackground(p);
   }
 
   setup(p: p5) {
@@ -44,7 +45,7 @@ export default class P5Canvas extends P5Element {
   }
 
   predraw(p: p5) {
-    p.background(220);
+    this.drawBackground(p);
   }
 
   draw(p: p5) {
@@ -53,5 +54,12 @@ export default class P5Canvas extends P5Element {
       this.dimensionsChanged = false;
     }
     P5Element.drawChildren(this, p);
+  }
+
+  drawBackground(p: p5) {
+    let background = getComputedStyle(this).background;
+    if (background && background !== "none" && background !== "transparent") {
+      p.background(background);
+    }
   }
 }

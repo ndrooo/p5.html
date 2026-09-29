@@ -9,6 +9,19 @@ export default class P5Element extends HTMLElement {
     P5Element.drawChildren(this, p);
   }
 
+  cssContext(p: p5, callback: (p?: p5) => void) {
+    p.stroke(getComputedStyle(this).getPropertyValue("color"));
+    p.fill(getComputedStyle(this).getPropertyValue("background"));
+    let opacity = Number(getComputedStyle(this).getPropertyValue("opacity"));
+    p.tint(255, opacity * 255);
+
+    callback(p);
+
+    p.noStroke();
+    p.noFill();
+    p.noTint();
+  }
+
   static setupChildren(node: Element, p: p5) {
     Array.from(node.children).forEach((child: Element) => {
       if (child instanceof P5Element) {

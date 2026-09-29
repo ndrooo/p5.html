@@ -17,9 +17,9 @@ class P5Circle extends P5Element {
   }
 
   draw(p: p5) {
-    p.fill("red");
-    p.circle(0, 0, this.diameter);
-    p.noFill();
+    this.cssContext(p, () => {
+      p.circle(0, 0, this.diameter);
+    });
   }
 }
 
