@@ -2,7 +2,7 @@ import P5Element from "../element";
 import type p5 from "p5";
 
 class P5Text extends P5Element {
-  content = this.innerText;
+  content = this.innerHTML;
 
   connectedCallback() {
     this.style.display = "none";
