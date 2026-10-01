@@ -1,0 +1,55 @@
+---
+title: Flower quine
+---
+
+<p5-canvas width="200" height="200" x-data="{}">
+    <p5-translate x="100" y="100">
+        <p5-rotate angle="0" id="spin">
+            <template x-for="i in 6">
+                <p5-rotate :angle="i * (Math.PI / 3)">
+                    <p5-translate x="50" y="0">
+                        <p5-circle d="75"></p5-circle>
+                    </p5-translate>
+                </p5-rotate>
+            </template>
+        </p5-rotate>
+    </p5-translate>
+    <p5-translate x="12" y="4">
+    <p5-text>
+<p5-rotate angle="0" id="spin">
+  <template x-for="i in 6">
+    <p5-rotate :angle="i * (Math.PI / 3)">
+      <p5-translate x="50" y="0">
+        <p5-circle d="75"></p5-circle>
+      </p5-translate>
+    </p5-rotate>
+  </template>
+</p5-rotate>
+    </p5-text>
+    </p5-translate>
+</p5-canvas>
+
+<script>
+    time = 0;
+    function setup() {
+        textFont("monospace", 16);
+    }
+    function draw() {
+        document.getElementById("spin").setAttribute("angle", time * 0.05);
+        time += 1;
+    }
+</script>
+
+<style>
+    p5-canvas {
+        background: rgb(from black r g b / 0.3);
+    }
+    p5-circle {
+        color: white;
+        background: rgb(from mediumpurple r g b / 0.5);
+    }
+    p5-text {
+        background: mediumspringgreen;
+        color: black;
+    }
+</style>
