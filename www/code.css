@@ -2,48 +2,48 @@
 /* (Then modified by hand) */
 
 pre {
-  background: var(--surface-darker);
-  border: 2px solid var(--accent);
-  hyphens: none;
-  line-height: 1.15;
-  margin: 0;
-  overflow: auto;
-  padding: 1em;
-  tab-size: 4;
-  max-height: 40em;
+    background: var(--surface-darker);
+    border: 2px solid var(--accent);
+    hyphens: none;
+    line-height: 1.15;
+    margin: 0;
+    overflow: auto;
+    padding: 1rem;
+    tab-size: 4;
+    max-height: 40em;
 }
 
 a:is(:focus-visible, :hover) code {
-  padding-block: 0;
-  background-color: unset;
-  color: inherit;
+    padding-block: 0;
+    background-color: unset;
+    color: inherit;
 }
 
 code {
-  color: white;
-  font-size: 1em;
+    color: white;
+    font-size: 0.8em;
 }
 
 :not(pre) > code {
-  background-color: var(--surface);
-  border-radius: 0.25rem;
-  padding: 0.15rem;
+    background-color: var(--surface);
+    border-radius: 0.25rem;
+    padding: 0.15rem;
 }
 
 /*********************************************************
 * Tokens
 */
 .namespace {
-  opacity: .7;
+    opacity: 0.7;
 }
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #bbb;
+    color: #bbb;
 }
 .token.punctuation {
-  color: #ddd;
+    color: #ddd;
 }
 .token.property,
 .token.tag,
@@ -52,7 +52,7 @@ code {
 .token.constant,
 .token.symbol,
 .token.deleted {
-  color: palevioletred;
+    color: palevioletred;
 }
 .token.selector,
 .token.attr-name,
@@ -60,35 +60,35 @@ code {
 .token.char,
 .token.builtin,
 .token.inserted {
-  color: aqua;
+    color: aqua;
 }
 .token.operator,
 .token.entity,
 .token.url,
 .language-css .token.string,
 .style .token.string {
-  color: yellow;
+    color: yellow;
 }
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  color: cyan;
+    color: cyan;
 }
 .token.function {
-  color: violet;
+    color: violet;
 }
 .token.regex,
 .token.important,
 .token.variable {
-  color: orange;
+    color: orange;
 }
 .token.important,
 .token.bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 .token.italic {
-  font-style: italic;
+    font-style: italic;
 }
 .token.entity {
-  cursor: help;
+    cursor: help;
 }
