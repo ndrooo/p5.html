@@ -1,0 +1,16 @@
+{% extends "base.njk" %}
+
+{% block title %}p5.html | {{ title }}{% endblock %}
+
+{% block content %}
+    <main>
+        <h1>{{ title }}</h1>
+        <p><a href="/">&larr; p5.html</a></p>
+        {{ content | safe }}
+        <div class="code">
+            {% highlight "html" %}
+            {{ content | safe }}
+            {% endhighlight %}
+        </div>
+    </main>
+{% endblock %}

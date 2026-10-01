@@ -1,39 +1,36 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
-        <script src="/p5.html.js" type="module"></script>
-        <script src="https://unpkg.com/alpinejs" defer></script>
+---
+layout: "base.njk"
+title: "p5.html"
+---
 
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <meta charset="utf-8" />
-    </head>
-    <body>
-        <main x-data="{ paused: false }">
-            <button
-                @click="paused = !paused"
-                x-text="paused ? 'Play' : 'Pause'"
-            >
-                Pause
-            </button>
-            <p5-canvas width="200" height="200" :paused="paused">
-                <p5-translate x="90" y="14">
-                    <p5-scale x="-1" y="1">
-                        <p5-text>&lt;p5-text&gt;</p5-text>
-                    </p5-scale>
-                </p5-translate>
-                <p5-translate x="30" y="30" class="noisy">
-                    <p5-scale x="0.5" y="0.5">
-                        <p5-image src="/static/rc.svg"></p5-image>
-                    </p5-scale>
-                </p5-translate>
-                <p5-translate x="20" y="20">
-                    <p5-rotate angle="45">
-                        <p5-ellipse w="30" h="20"></p5-ellipse>
-                    </p5-rotate>
-                </p5-translate>
-            </p5-canvas>
-        </main>
-        <script src="sketch.js"></script>
-    </body>
-</html>
+<p>
+    p5.html is a wrapper around <a href="https://p5js.org/">p5.js</a> which
+    allows you to write
+    <a href="https://processing.org/">Processing</a> sketches declaratively
+    using HTML, CSS, and less Javascript than usual.
+</p>
+
+<p>
+    The easiest way to get started is in the
+    <a href="https://editor.p5js.org/">p5.js web editor</a>. Switch to the
+    <code>index.html</code> page and insert the following
+    <code>&lt;script&gt;</code> tag into the <code>&lt;head&gt;</code> section,
+    after the script tag for <code>p5.js</code>:
+</p>
+
+<div class="code-with-copy">
+    <button onclick="copyFromId(this, 'script-tag')">Copy</button>
+    <div class="code" id="script-tag">
+    {% highlight "html" %}
+    <script src="https://cdn.jsdelivr.net/npm/p5.html@{{p5html.version}}/dist/p5.html.min.js" type="module"></script>
+    {% endhighlight %}
+    </div>
+</div>
+
+<h2>Example sketches</h2>
+
+<ul>
+    {% for sketch in collections.sketch %}
+    <li><a href="{{ sketch.url }}">{{ sketch.data.title }}</a></li>
+    {% endfor %}
+</ul>

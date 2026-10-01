@@ -1,0 +1,56 @@
+---
+title: Many elements
+---
+
+<p5-canvas width="200" height="200">
+    <p5-translate x="90" y="14">
+        <p5-scale x="-1" y="1">
+            <p5-text>&lt;p5-text&gt;</p5-text>
+        </p5-scale>
+    </p5-translate>
+    <p5-translate x="30" y="30" class="noisy">
+        <p5-scale x="0.5" y="0.5">
+            <p5-image src="/static/rc.svg"></p5-image>
+        </p5-scale>
+    </p5-translate>
+    <p5-translate x="20" y="20">
+        <p5-rotate angle="45">
+            <p5-ellipse w="30" h="20"></p5-ellipse>
+        </p5-rotate>
+    </p5-translate>
+</p5-canvas>
+
+<style>
+    p5-canvas {
+        background: lightblue;
+    }
+    p5-rect {
+        color: blue;
+        background: green;
+    }
+    p5-ellipse {
+        color: red;
+        background: rgb(from orange r g b / 0.5);
+    }
+    p5-text {
+        color: transparent;
+        background: black;
+    }
+</style>
+
+<script>
+    time = 0.0;
+
+    function draw() {
+        fill("blue");
+        rect(20, 20, 50, 50);
+        noFill();
+
+        Array.from(p5Root.getElementsByClassName("noisy")).forEach((el) => {
+            el.setAttribute("x", el.x + (noise(time) - 0.5));
+            el.setAttribute("y", el.y + (noise(time + 10) - 0.5));
+        });
+
+        time += 0.01;
+    }
+</script>

@@ -1,0 +1,60 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+a {
+    color: lightseagreen;
+}
+
+main {
+    max-width: 60ch;
+    margin: 0 auto;
+}
+
+button {
+    border: 2px solid rgb(0, 99, 184);
+    border-radius: 8px;
+    box-shadow: rgb(0, 99, 184) 2px 4px 0px 0px;
+    background-color: rgb(0, 29, 104);
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    > svg {
+        display: block;
+    }
+    &:active {
+        box-shadow: none;
+    }
+}
+
+.code {
+    border: 2px solid white;
+    border-radius: 8px;
+    box-shadow: #444 4px 5px 0px 0px;
+    padding: 0;
+    margin: 1rem 0;
+
+    pre {
+       margin: 0; 
+    }
+}
+
+.code-with-copy {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+
+    * {
+        flex: 1;
+        flex-grow: 0;
+        flex-shrink: 1;
+    }
+
+    .code {
+        margin: 0;
+        flex-basis: 0;
+        flex-grow: 1;
+        overflow-x: scroll;
+    }
+}
