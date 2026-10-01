@@ -21,11 +21,14 @@ title: "p5.html"
 <div class="code-with-copy">
     <button onclick="copyFromId(this, 'script-tag')">Copy</button>
     <div class="code" id="script-tag">
-    {% highlight "html" %}
-    <script src="https://cdn.jsdelivr.net/npm/p5.html@{{p5html.version}}/dist/p5.html.min.js" type="module"></script>
-    {% endhighlight %}
+        {% highlight "html" %} {{ p5html.scriptTag | safe }} {% endhighlight %}
     </div>
 </div>
+
+<p>
+    Here are some links: <a href="https://github.com/ndrooo/p5.html">GitHub</a>,
+    <a href="https://www.npmjs.com/package/p5.html">npm registry</a>
+</p>
 
 <h2>Example sketches</h2>
 
