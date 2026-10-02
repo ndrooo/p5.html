@@ -17,6 +17,7 @@ declare global {
     setup?: () => void;
     draw?: () => void;
     p5?: any;
+    P5Element?: typeof P5Element;
   }
 }
 
@@ -61,5 +62,7 @@ if (window.p5) {
 
 // This must be defined after the addon is set up
 customElements.define("p5-canvas", P5Canvas);
+
+window.P5Element = P5Element;
 
 export { P5Element, P5Html, P5HtmlExtension };
