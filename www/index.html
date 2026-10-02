@@ -39,6 +39,37 @@ title: "p5.html"
     <a href="https://www.npmjs.com/package/p5.html">npm registry</a>
 </p>
 
+<div class="center-cool">
+    <p5-canvas width="400" height="400" x-data="">
+        <p5-translate x="200" y="200">
+            <p5-rotate angle="0" id="spin">
+                <template x-for="i in 6">
+                    <p5-rotate :angle="i * (Math.PI / 3)">
+                        <p5-translate x="100" y="0">
+                            <p5-circle d="150"></p5-circle>
+                        </p5-translate>
+                    </p5-rotate>
+                </template>
+            </p5-rotate>
+        </p5-translate>
+    </p5-canvas>
+</div>
+
+<style>
+    p5-circle {
+        background-color: rgb(from royalblue r g b / 0.5);
+        color: royalblue;
+    }
+</style>
+
+<script>
+    time = 0;
+    function draw() {
+        document.getElementById("spin").setAttribute("angle", time * 0.01);
+        time += 1;
+    }
+</script>
+
 <h2>Example sketches</h2>
 
 <ul>

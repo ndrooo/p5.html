@@ -60,6 +60,24 @@ button {
     }
 }
 
+.center-cool {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid white;
+    background: repeating-linear-gradient(
+        -45deg,
+        white,
+        white 2px,
+        transparent 2px,
+        transparent 12px
+    );
+    p5-canvas {
+        border-inline: 3px solid white;
+        background: #0a0a0a;
+    }
+}
+
 .code {
     border: 2px solid white;
     border-radius: 8px;
