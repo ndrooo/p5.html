@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
+        <script src="/p5.html.js" type="module"></script>
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/markdown.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/highlight.js"></script>
+        <script src="https://unpkg.com/alpinejs" defer></script>
+        <script src="./spin-thing.js" type="module"></script>
+
+        <title>p5.html: Processing for HTML</title>
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.css"
+        />
+        <link rel="stylesheet" type="text/css" href="./theme.css" />
+        <link rel="stylesheet" type="text/css" href="./styles.css" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/highlight/monokai.css"
+        />
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <p5-canvas
+                        width="300"
+                        height="300"
+                        x-data="{}"
+                        class="flower"
+                    >
+                        <p5-translate x="150" y="150">
+                            <spin-thing speed="1">
+                                <template x-for="i in 6">
+                                    <p5-rotate :angle="i * (Math.PI / 3)">
+                                        <p5-translate x="75" y="0">
+                                            <p5-circle d="100"></p5-circle>
+                                        </p5-translate>
+                                    </p5-rotate>
+                                </template>
+                            </spin-thing>
+                        </p5-translate>
+                    </p5-canvas>
+                    <h1>p5.html: Processing for HTML!</h1>
+                    <p>Andrew Sherman - <a href="mailto:a@ndr.ooo">a@ndr.ooo</a></p>
+                </section>
+                <section>
+                    <section>
+                        <h2>Why <del>What</del> is p5.html?</h2>
+                        <p>p5.js is awesome!</p>
+                        <p class="fragment">What is the web made of?</p>
+                        <div class="logos">
+                            <div class="fragment">JS</div>
+                            <div class="fragment">HTML</div>
+                            <div class="fragment">CSS</div>
+                        </div>
+                        <p class="fragment">p5 can be all of these!</p>
+                    </section>
+                    <section>
+                        <h3>What is p5.html?</h3>
+                        <ul>
+                            <li>Processing for HTML (and CSS, and JS)</li>
+                            <li class="fragment">Very much a prototype</li>
+                            <li class="fragment">
+                                Built with HTML Custom Elements
+                            </li>
+                        </ul>
+                        <pre
+                            class="fragment"
+                        ><code data-trim data-line-numbers="1-5|6-12|13-17">
+                            <p5-canvas width="200" height="200">
+                                <p5-translate id="square" x="0" y="50">
+                                    <p5-rect width="100" height="100"></p5-rect>
+                                </p5-translate>
+                            </p5-canvas>
+                            &lt;script&gt;
+                              let x = 0;
+                              function draw() {
+                                document.getElementById('square').setAttribute('x', x);
+                                x += 1;
+                              }
+                            &lt;/script&gt;
+                            <style>
+                                p5-rect {
+                                    background: blue;
+                                }
+                            </style>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Composable</h3>
+                        <img src="/static/lego.jpg" height="400" />
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>How do you use it?</h2>
+                        <pre><code data-trim data-line-numbers="1-4|6-10">
+                            &lt;head&gt;
+                                &lt;script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.js"&gt;&lt;/script&gt;
+                                &lt;script src="https://cdn.jsdelivr.net/npm/p5.html@latest/dist/p5.html.min.js"&gt;&lt;/script&gt;
+                            &lt;/head&gt;
+
+                            &lt;body&gt;
+                                <p5-canvas width="200" height="200">
+                                    <p5-rect w="50" h="50"></p5-rect>
+                                </p5-canvas>
+                            &lt;/body&gt;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p5-canvas
+                            width="500"
+                            height="500"
+                            x-data="{}"
+                            class="flower"
+                        >
+                            <p5-translate x="250" y="250">
+                                <spin-thing speed="1">
+                                    <template x-for="i in 6">
+                                        <p5-rotate :angle="(i - 1) * (Math.PI / 3)">
+                                            <p5-translate x="125" y="0">
+                                                <p5-circle d="175"></p5-circle>
+                                            </p5-translate>
+                                        </p5-rotate>
+                                    </template>
+                                </spin-thing>
+                            </p5-translate>
+                        </p5-canvas>
+                    </section>
+                    <section>
+                        <h3>How can you extend it?</h3>
+                        <pre><code data-trim data-line-numbers="1-16|2,12|5-11|7|8|14|16">
+                            <script>
+                              class SpinThing extends P5Element {
+                                time = 0;
+
+                                draw(p) {
+                                  p.push();
+                                  p.rotate(this.time * this.getAttribute("speed"));
+                                  P5Element.drawChildren(this, p);
+                                  p.pop();
+                                  this.time += 0.01;
+                                }
+                              }
+
+                              customElements.define("spin-thing", SpinThing);
+                            </script>
+                            <spin-thing speed="1"></spin-thing>
+                        </pre>
+                        </code>
+                        <div class="fragment">
+                            <img src="/static/alpine.png" height="150">
+                            <img src="/static/react.png" height="150">
+                            <img src="/static/hugo.png" height="150">
+                            <img src="/static/svelte.png" height="150">
+                            <img src="/static/jquery.png" height="150">
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Tinkering environments</h2>
+                        <div class="r-stack">
+                            <img class="fragment" src="/static/froebel.jpeg" height="400" />
+                            <img
+                                class="fragment"
+                                src="/static/gifts.jpg"
+                                height="350"
+                            />
+                            <img
+                                class="fragment"
+                                src="/static/sticks-and-peas.webp"
+                                height="300"
+                            />
+                            <img
+                                class="fragment"
+                                src="/static/tinkertoy.jpg"
+                                height="400"
+                            />
+                        </div>
+                        <p class="fragment">Build up, poke, prod, rearrange</p>
+                    </section>
+                    <section>
+                        <h3>Tinkering software</h3>
+                        <img src="/static/mindstorms.jpg" height="300" />
+                        <img src="/static/scratch.png" height="350" />
+                        <img src="/static/godot_scenes.png" height="300" />
+                        <img src="/static/godot_exports.png" height="350" />
+                        <p class="fragment">Quick changes, quick feedback</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>Composable software can be anywhere!</h2>
+                    <p>You don't need to use p5.html!</p>
+                    <p>(But I hope you'll try it out)</p>
+                    <pre class="fragment fade-in"><code data-trim class="language-javascript" data-line-numbers>
+                        class Brick {
+                            draw() {}
+                            attach(brick) {}
+                        }
+                        class SquareBrick extends Brick {}
+                        class TreeBrick extends Brick {}
+                        class Minifig extends Brick {
+                            head; torso; legs;
+                        }
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Thank you!</h2>
+                    <ul>
+                        <li>
+                            Try out p5.html:
+                            <a href="https://p5.html.ndr.ooo"
+                                >p5.html.ndr.ooo</a
+                            >
+                        </li>
+                        <li>
+                            Contact me: <a href="mailto:a@ndr.ooo">a@ndr.ooo</a>
+                            <ul>
+                                <li>Thoughts</li>
+                                <li>Suggestions</li>
+                                <li>Things you make!</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Built with 💚 at the
+                            <a
+                                href="https://www.recurse.com/scout/click?t=9f3a0a3064d8c13d07a00e5414eace20"
+                                >Recurse Center</a
+                            >
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <script>
+            Reveal.initialize({
+                plugins: [RevealMarkdown, RevealHighlight],
+                hash: true,
+            });
+        </script>
+    </body>
+</html>

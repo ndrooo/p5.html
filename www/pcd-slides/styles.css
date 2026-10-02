@@ -1,0 +1,36 @@
+.flower {
+    --color: royalblue;
+    background: #0a0a0a44;
+
+    p5-circle {
+        background-color: rgb(from var(--color) r g b / 0.5);
+        color: var(--color);
+    }
+}
+
+.logos {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+
+    * {
+        width: 200px;
+        height: 200px;
+        border-radius: 4px;
+        color: #0a0a0a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+    }
+
+    :nth-child(1) {
+        background-color: yellow;
+    }
+    :nth-child(2) {
+        background-color: orange;
+    }
+    :nth-child(3) {
+        background-color: royalblue;
+    }
+}
