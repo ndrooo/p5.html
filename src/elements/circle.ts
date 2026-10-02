@@ -2,7 +2,7 @@ import P5Element from "../element";
 import type p5 from "p5";
 
 class P5Circle extends P5Element {
-  observedAttributes = ["d"];
+  static observedAttributes = ["d"];
 
   diameter: number = 0;
 

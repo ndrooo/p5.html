@@ -2,7 +2,7 @@ import P5Element from "../element";
 import type p5 from "p5";
 
 class P5Ellipse extends P5Element {
-  observedAttributes = ["w", "h"];
+  static observedAttributes = ["w", "h"];
 
   width: number = 0;
   height: number = 0;
