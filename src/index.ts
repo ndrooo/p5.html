@@ -28,6 +28,7 @@ if (window.p5) {
         const canvases = document.getElementsByTagName("p5-canvas");
         if (canvases.length > 0) {
           this.p5Root = canvases[0];
+          this._userNode = canvases[0];
         }
       }
       if (this.p5Root !== null) {
