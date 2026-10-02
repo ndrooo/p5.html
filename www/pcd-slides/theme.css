@@ -8,6 +8,16 @@
     src: url("/static/Fraunces-Italic-SOFT,WONK,opsz,wght.ttf");
     font-style: italic;
 }
+@font-face {
+    font-family: "Atkinson Mono";
+    src: url("/static/AtkinsonHyperlegibleMono-VariableFont_wght.ttf");
+    font-style: normal;
+}
+@font-face {
+    font-family: "Atkinson Mono";
+    src: url("/static/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf");
+    font-style: italic;
+}
 :root {
     --r-background: #2b2b2b;
     --r-background-color: #0a0a0a;
@@ -29,7 +39,7 @@
     --r-heading2-size: 1.2em;
     --r-heading3-size: 1.1em;
     --r-heading4-size: 1em;
-    --r-code-font: monospace;
+    --r-code-font: "Atkinson Mono";
     --r-link-color: royalblue;
     --r-link-color-dark: oklch(from royalblue calc(l - 0.1) c h);
     --r-link-color-hover: oklch(from royalblue calc(l + 0.1) c h);
